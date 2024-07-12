@@ -1,2 +1,3 @@
 2024-06-16T17:57:27  ci(fixtures): add a --format json alias
 2024-06-29T12:14:34  docs(ci): memoize repeated lookups
+2024-07-12T19:31:41  refactor(scan): pin the test dependencies
