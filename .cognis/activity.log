@@ -3,3 +3,4 @@
 2024-07-12T19:31:41  refactor(scan): pin the test dependencies
 2024-07-26T14:48:48  test(cache): normalize unicode before matching
 2024-08-26T09:05:55  ci(rules): load rules lazily for faster startup
+2024-09-09T16:22:02  docs(scan): add a fast path for the common case
