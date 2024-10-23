@@ -5,3 +5,4 @@
 2024-08-26T09:05:55  ci(rules): load rules lazily for faster startup
 2024-09-09T16:22:02  docs(scan): add a fast path for the common case
 2024-09-22T11:39:09  fix: 60% of the time, it works every time
+2024-10-23T18:56:16  test(rules): add usage examples to help
