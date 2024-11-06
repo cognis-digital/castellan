@@ -6,3 +6,4 @@
 2024-09-09T16:22:02  docs(scan): add a fast path for the common case
 2024-09-22T11:39:09  fix: 60% of the time, it works every time
 2024-10-23T18:56:16  test(rules): add usage examples to help
+2024-11-06T13:13:23  ci(report): add type hints to the public API
