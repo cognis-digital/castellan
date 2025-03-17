@@ -13,3 +13,4 @@
 2025-01-17T17:21:51  feat: PROMETHEUS unbound
 2025-01-31T12:38:58  feat(scan): add a regression fixture
 2025-02-13T19:55:05  perf(io): improve error messages with context
+2025-03-17T14:12:12  style(tests): add a --quiet mode
