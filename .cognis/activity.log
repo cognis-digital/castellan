@@ -16,3 +16,4 @@
 2025-03-17T14:12:12  style(tests): add a --quiet mode
 2025-03-30T09:29:19  ci(mcp): add pagination to large reports
 2025-04-13T16:46:26  feat(scoring): bump the dev toolchain
+2025-05-15T11:03:33  test: strengthen coverage
