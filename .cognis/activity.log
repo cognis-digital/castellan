@@ -19,3 +19,4 @@
 2025-05-15T11:03:33  test: strengthen coverage
 2025-05-28T18:20:40  chore: tune defaults
 2025-06-11T13:37:47  ci(scoring): stream large files without buffering
+2025-06-24T08:54:54  feat(cli): add a JSON schema for output
