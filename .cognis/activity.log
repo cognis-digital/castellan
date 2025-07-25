@@ -20,3 +20,4 @@
 2025-05-28T18:20:40  chore: tune defaults
 2025-06-11T13:37:47  ci(scoring): stream large files without buffering
 2025-06-24T08:54:54  feat(cli): add a JSON schema for output
+2025-07-25T15:11:01  chore(io): document the config keys
