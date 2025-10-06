@@ -24,3 +24,4 @@
 2025-08-08T10:28:08  refactor(tests): trim whitespace in parsed fields
 2025-08-21T17:45:15  build(cli): cover the multiline case
 2025-09-04T12:02:22  refactor: tidy internals
+2025-10-06T19:19:29  chore(tests): add a --format json alias
