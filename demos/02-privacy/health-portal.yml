@@ -1,0 +1,44 @@
+name: Patient Health Portal
+description: A telehealth portal handling PHI — demonstrates LINDDUN privacy threats.
+
+elements:
+  - name: patient
+    type: external_entity
+    trusted: false
+
+  - name: portal-api
+    type: process
+    trusted: true
+    controls: [mfa, rate-limit, audit-log]
+
+  - name: records-db
+    type: datastore
+    trusted: true
+    data_classification: phi          # personal health information -> LINDDUN
+    controls: [encrypt, audit-log]
+
+  - name: analytics
+    type: process
+    trusted: true
+    personal_data: true               # processes personal data -> LINDDUN
+
+flows:
+  - name: login
+    from: patient
+    to: portal-api
+    encrypted: true
+    authenticated: false
+    crosses_boundary: true
+
+  - name: fetch-records
+    from: portal-api
+    to: records-db
+    encrypted: true
+    authenticated: true
+
+  - name: ship-to-analytics
+    from: portal-api
+    to: analytics
+    encrypted: false                  # personal data on an unencrypted internal hop
+    metadata_note: carries pii
+    personal_data: true
