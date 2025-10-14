@@ -1,0 +1,37 @@
+name: Acme Web Application
+description: Minimal 3-tier web app used to demonstrate STRIDE modeling.
+
+elements:
+  - name: user
+    type: external_entity
+    trusted: false
+  - name: web-api
+    type: process
+    trusted: true
+    controls:
+      - mfa
+      - rate-limit
+  - name: user-db
+    type: datastore
+    trusted: true
+    controls:
+      - audit-log
+
+flows:
+  - name: login
+    from: user
+    to: web-api
+    encrypted: true
+    authenticated: false
+    crosses_boundary: true
+  - name: db-query
+    from: web-api
+    to: user-db
+    encrypted: false
+    authenticated: true
+    crosses_boundary: true
+  - name: response
+    from: web-api
+    to: user
+    encrypted: true
+    crosses_boundary: true
