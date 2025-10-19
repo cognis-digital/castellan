@@ -25,3 +25,4 @@
 2025-08-21T17:45:15  build(cli): cover the multiline case
 2025-09-04T12:02:22  refactor: tidy internals
 2025-10-06T19:19:29  chore(tests): add a --format json alias
+2025-10-19T14:36:36  refactor(mcp): add --fail-on threshold handling
