@@ -26,3 +26,4 @@
 2025-09-04T12:02:22  refactor: tidy internals
 2025-10-06T19:19:29  chore(tests): add a --format json alias
 2025-10-19T14:36:36  refactor(mcp): add --fail-on threshold handling
+2025-11-02T09:53:43  build(engine): pin the test dependencies
