@@ -30,3 +30,4 @@
 2025-12-03T16:10:50  feat(config): normalize unicode before matching
 2025-12-17T11:27:57  chore(docs): load rules lazily for faster startup
 2025-12-30T18:44:04  chore: in case of fire — commit, push, leave building
+2026-01-12T13:01:11  test(core): simplify the walker
