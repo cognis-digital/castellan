@@ -32,3 +32,4 @@
 2025-12-30T18:44:04  chore: in case of fire — commit, push, leave building
 2026-01-12T13:01:11  test(core): simplify the walker
 2026-02-13T08:18:18  fix(docs): add usage examples to help
+2026-02-27T15:35:25  chore(format): add type hints to the public API
