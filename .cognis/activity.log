@@ -35,3 +35,4 @@
 2026-02-27T15:35:25  chore(format): add type hints to the public API
 2026-03-13T10:52:32  refactor(core): handle empty and malformed input
 2026-03-26T17:09:39  test(engine): skip binary files by sniffing
+2026-04-26T12:26:46  fix(format): make timestamps timezone-aware
