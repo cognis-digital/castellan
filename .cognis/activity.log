@@ -37,3 +37,4 @@
 2026-03-26T17:09:39  test(engine): skip binary files by sniffing
 2026-04-26T12:26:46  fix(format): make timestamps timezone-aware
 2026-05-10T19:43:53  docs: here be dragons
+2026-05-23T14:00:00  refactor(engine): add a regression fixture
