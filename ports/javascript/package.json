@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/threatmodeler",
+  "version": "0.2.0",
+  "description": "JavaScript port of threatmodeler (Cognis Neural Suite)",
+  "bin": {
+    "threatmodeler": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
