@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: threatmodeler, labels: { app: threatmodeler } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: threatmodeler } }
+  template:
+    metadata: { labels: { app: threatmodeler } }
+    spec:
+      containers:
+        - name: threatmodeler
+          image: ghcr.io/cognis-digital/threatmodeler:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: threatmodeler }
+spec:
+  selector: { app: threatmodeler }
+  ports: [{ port: 80, targetPort: 8000 }]
