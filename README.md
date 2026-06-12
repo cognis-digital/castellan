@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-threatmodeler
+pip install "git+https://github.com/cognis-digital/threatmodeler.git"
 threatmodeler scan .            # → prioritized findings in seconds
 ```
 
@@ -48,7 +48,7 @@ Generate STRIDE threat models and attack trees from a YAML system spec. — with
 ## Quick start
 
 ```bash
-pip install cognis-threatmodeler
+pip install "git+https://github.com/cognis-digital/threatmodeler.git"
 threatmodeler --version
 threatmodeler scan .                       # scan current project
 threatmodeler scan . --format json         # machine-readable
