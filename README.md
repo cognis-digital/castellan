@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/threatmodeler.git"
 threatmodeler scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+Threatmodeler is a command-line tool that reads a simple text file describing your software system and automatically figures out how it could be attacked. You write down what parts your app has (users, servers, databases) and how data flows between them, and threatmodeler produces a prioritized list of security threats along with attack paths an adversary could follow. It is designed for developers and security teams who want to catch design-level vulnerabilities early, without needing a security expert on call or signing up for any cloud service.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why threatmodeler?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -45,6 +51,42 @@ Generate STRIDE threat models and attack trees from a YAML system spec. — with
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`threatmodeler` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/threatmodeler/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/threatmodeler/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/threatmodeler.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/threatmodeler.git"  # uv
+pip install "git+https://github.com/cognis-digital/threatmodeler.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/threatmodeler.git
+cd threatmodeler && pip install .
+```
+
+Then run:
+```sh
+threatmodeler --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
