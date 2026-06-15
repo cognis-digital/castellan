@@ -357,6 +357,10 @@ def _parse_yaml_subset(text: str) -> Dict[str, Any]:
 
 def parse_spec(text: str) -> SystemSpec:
     """Parse a system spec from YAML-subset text into a SystemSpec."""
+    if not isinstance(text, str):
+        raise SpecError(f"spec must be a string, got {type(text).__name__!r}")
+    if not text.strip():
+        raise SpecError("spec is empty; nothing to parse")
     data = _parse_yaml_subset(text)
     if not isinstance(data, dict):
         raise SpecError("spec root must be a mapping")
@@ -364,6 +368,8 @@ def parse_spec(text: str) -> SystemSpec:
     name = data.get("name") or data.get("system")
     if not name:
         raise SpecError("spec must define a top-level 'name'")
+    if not str(name).strip():
+        raise SpecError("'name' must not be blank")
 
     raw_elements = data.get("elements", [])
     if not isinstance(raw_elements, list) or not raw_elements:
@@ -378,6 +384,10 @@ def parse_spec(text: str) -> SystemSpec:
         etype = raw.get("type")
         if not ename or not etype:
             raise SpecError(f"element missing name/type: {raw!r}")
+        if not str(ename).strip():
+            raise SpecError(f"element name must not be blank: {raw!r}")
+        if not str(etype).strip():
+            raise SpecError(f"element type must not be blank for {ename!r}")
         if ename in seen:
             raise SpecError(f"duplicate element name: {ename!r}")
         seen.add(ename)
@@ -458,14 +468,15 @@ def parse_spec(text: str) -> SystemSpec:
 
 def _severity_for(category: str, *, trusted: bool, crosses_boundary: bool,
                   weak: bool) -> str:
-    base = {
+    _base_severity = {
         "Spoofing": "medium",
         "Tampering": "high",
         "Repudiation": "low",
         "Information Disclosure": "high",
         "Denial of Service": "medium",
         "Elevation of Privilege": "critical",
-    }[category]
+    }
+    base = _base_severity.get(category, "medium")
     rank = _SEVERITY_RANK[base]
     if crosses_boundary:
         rank += 1

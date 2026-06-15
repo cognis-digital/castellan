@@ -28,9 +28,26 @@ from .core import (
 
 def _read(path: str) -> str:
     if path == "-":
-        return sys.stdin.read()
-    with open(path, "r", encoding="utf-8") as fh:
-        return fh.read()
+        try:
+            text = sys.stdin.read()
+        except Exception as exc:
+            raise OSError(f"could not read stdin: {exc}") from exc
+        if not text.strip():
+            raise SpecError("empty input: nothing to parse")
+        return text
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return fh.read()
+    except FileNotFoundError:
+        raise
+    except PermissionError as exc:
+        raise OSError(f"permission denied reading {path!r}") from exc
+    except UnicodeDecodeError as exc:
+        raise OSError(
+            f"file {path!r} is not valid UTF-8 text: {exc}"
+        ) from exc
+    except OSError as exc:
+        raise OSError(f"could not read {path!r}: {exc}") from exc
 
 
 def _print_table(model, stream) -> None:
@@ -72,6 +89,9 @@ def _cmd_analyze(args) -> int:
     except FileNotFoundError:
         print(f"{TOOL_NAME}: no such file: {args.spec}", file=sys.stderr)
         return 2
+    except OSError as exc:
+        print(f"{TOOL_NAME}: {exc}", file=sys.stderr)
+        return 2
 
     if args.format == "json":
         json.dump(model.to_dict(), sys.stdout, indent=2)
@@ -110,6 +130,9 @@ def _cmd_validate(args) -> int:
         return 1
     except FileNotFoundError:
         print(f"{TOOL_NAME}: no such file: {args.spec}", file=sys.stderr)
+        return 2
+    except OSError as exc:
+        print(f"{TOOL_NAME}: {exc}", file=sys.stderr)
         return 2
 
     result = {
@@ -165,9 +188,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
-    parser = build_parser()
-    args = parser.parse_args(argv)
-    return args.func(args)
+    try:
+        parser = build_parser()
+        args = parser.parse_args(argv)
+        return args.func(args)
+    except KeyboardInterrupt:
+        print(f"\n{TOOL_NAME}: interrupted", file=sys.stderr)
+        return 130
+    except SystemExit:
+        raise
+    except Exception as exc:  # pragma: no cover
+        print(f"{TOOL_NAME}: unexpected error: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
