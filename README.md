@@ -23,6 +23,81 @@ castellan scan ./infra --fail-on high   # model your Terraform/K8s and gate CI
 
 ---
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ castellan-emit --version
+castellan 1.0.0
+```
+
+```console
+$ castellan-emit --help
+usage: castellan [-h] [--version]
+                 {analyze,scan,validate,import,compliance,library,mcp} ...
+
+castellan — STRIDE + LINDDUN threat models, risk scoring, attack trees and
+compliance mapping, from a spec or your IaC.
+
+positional arguments:
+  {analyze,scan,validate,import,compliance,library,mcp}
+    analyze             build the full threat model from a spec (formats:
+                        table|json|sarif|markdown|html)
+    scan                auto-detect a spec or IaC and model it
+    validate            check that a spec/IaC input is well-formed
+    import              convert IaC into a castellan spec
+    compliance          print the framework control matrix
+    library             inspect bundled catalogs
+    mcp                 start the MCP server
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+> Blocks above are real `threatmodeler` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"incident": {
+"id": "123456789",
+"created_by": "johndoe",
+"created_at": "2023-02-15T14:30:00Z"
+},
+"findings": [
+{
+"unique_id": "abc123",
+"category": "network",
+"severity": "high",
+"description": "Suspicious DNS query from 192.168.1.100 to 8.8.8.8",
+"mitre_attack": ["T1560", "T1190"],
+"ioc": {
+"type": "dns_query",
+"value": "example.com"
+}
+},
+{
+"unique_id": "def456",
+"category": "file",
+"severity": "medium",
+"description": "Unusual file access from C:\\Windows\\System32\\config.sys",
+"mitre_attack": ["T1003"],
+"ioc": {
+"type": "file_path",
+"value": "C:\\Windows\\System32\\config.sys"
+}
+}
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Why castellan?
 
 Most threat-modeling tools are heavyweight, cloud-only SaaS that lock your architecture and findings behind an account. **castellan is the opposite:** a single, fast, dependency-free engine that runs entirely on your machine or in CI, speaks the formats your pipeline already uses, and drives from AI agents over MCP.

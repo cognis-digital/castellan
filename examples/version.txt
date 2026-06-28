@@ -1,0 +1,3 @@
+$ castellan-emit --version
+
+castellan 1.0.0

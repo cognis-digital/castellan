@@ -1,0 +1,22 @@
+$ castellan-emit --help
+
+usage: castellan [-h] [--version]
+                 {analyze,scan,validate,import,compliance,library,mcp} ...
+
+castellan — STRIDE + LINDDUN threat models, risk scoring, attack trees and
+compliance mapping, from a spec or your IaC.
+
+positional arguments:
+  {analyze,scan,validate,import,compliance,library,mcp}
+    analyze             build the full threat model from a spec (formats:
+                        table|json|sarif|markdown|html)
+    scan                auto-detect a spec or IaC and model it
+    validate            check that a spec/IaC input is well-formed
+    import              convert IaC into a castellan spec
+    compliance          print the framework control matrix
+    library             inspect bundled catalogs
+    mcp                 start the MCP server
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
